@@ -10,6 +10,5 @@ joblib
 types-pyYAML
 Flask
 Flask-Cors
-box
 torchsummary
 -e .

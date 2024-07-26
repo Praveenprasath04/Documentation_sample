@@ -1,11 +1,8 @@
 from sample_project.constants import *
 from sample_project.utils.common import read_yaml, create_directories
 from sample_project.entity.config_entity import DataIngestionConfig
-
+from sample_project.entity.config_entity import PrepareBaseModelConfig
 from pathlib import Path
-
-CONFIG_FILE_PATH = Path("config/config.yaml")
-PARAMS_FILE_PATH = Path("params.yaml")
 
 class ConfigurationManager:
     def __init__(
@@ -33,3 +30,24 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
+    
+    
+
+    def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
+        config = self.config.prepare_base_model
+        
+        create_directories([config.root_dir])
+
+        prepare_base_model_config = PrepareBaseModelConfig(
+            root_dir=Path(config.root_dir),
+            base_model_path=Path(config.base_model_path),
+            updated_base_model_path=Path(config.updated_base_model_path),
+            params_batch_size = self.params.BATCH_SIZE,
+            params_valid_size =  self.params.VALID_SIZE,  
+            params_Loss_function = self.params.LOSS_FUNCTION,
+            params_learning_rate = self.params.LEARNING_RATE,
+            params_momentum = self.params.MOMENTUM ,
+            params_image_dim = self.params.IMAGE_DIM 
+        )
+
+        return prepare_base_model_config

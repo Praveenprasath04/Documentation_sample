@@ -3,6 +3,7 @@ from sample_project.pipeline.stage_01_data_ingestion import DataIngestionTrainin
 from sample_project.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
 from sample_project.pipeline.stage_03_data_preprocessing import DataPreprocessTrainingPipeline
 
+
 STAGE_NAME = "Data Ingestion stage"
 
 try:
@@ -36,3 +37,5 @@ try:
 except Exception as e:
     logger.exception(e)
     raise e
+
+

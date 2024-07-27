@@ -12,3 +12,11 @@ prepare_base_model:
   base_model_path: artifacts/prepare_base_model/base_model.h5
   updated_base_model_path: artifacts/prepare_base_model/base_model_updated.h5
 
+data_preprocessing:
+  root_dir: artifacts/data_preprocessing
+  train_loader_dir: artifacts/data_preprocessing/train_loader.ld
+  valid_loader_dir: artifacts/data_preprocessing/valid_loader.ld
+  test_loader_dir: artifacts/data_preprocessing/test_loader.ld
+  data_dir: artifacts/data_ingestion
+
+

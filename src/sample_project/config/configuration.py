@@ -2,6 +2,7 @@ from sample_project.constants import *
 from sample_project.utils.common import read_yaml, create_directories
 from sample_project.entity.config_entity import DataIngestionConfig
 from sample_project.entity.config_entity import PrepareBaseModelConfig
+from sample_project.entity.config_entity import DataPreprocessConfig
 from pathlib import Path
 
 class ConfigurationManager:
@@ -30,6 +31,27 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
+
+
+    def get_data_preprocess_config(self) -> DataPreprocessConfig:
+        config = self.config.data_preprocessing
+        params = self.params
+
+        create_directories([config.root_dir])
+
+        data_preprocess_config = DataPreprocessConfig(
+            root_dir=config.root_dir,
+            data_dir = config.data_dir,
+            train_loader_dir = config.train_loader_dir,
+            valid_loader_dir = config.valid_loader_dir,
+            test_loader_dir = config.test_loader_dir,
+            params_image_dim = params.IMAGE_DIM,
+            params_batch_size= params.BATCH_SIZE,
+            params_valid_size = params.VALID_SIZE
+
+        )
+
+        return data_preprocess_config
     
     
 

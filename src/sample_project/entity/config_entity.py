@@ -10,6 +10,17 @@ class DataIngestionConfig:
     unzip_dir: Path
 
 @dataclass(frozen=True)
+class DataPreprocessConfig:
+    root_dir: Path
+    data_dir : Path
+    train_loader_dir: Path
+    valid_loader_dir: Path
+    test_loader_dir: Path
+    params_batch_size : int
+    params_valid_size : float
+    params_image_dim : int
+
+@dataclass(frozen=True)
 class PrepareBaseModelConfig:
     root_dir: Path
     base_model_path: Path
@@ -20,3 +31,4 @@ class PrepareBaseModelConfig:
     params_learning_rate : float
     params_momentum: float
     params_image_dim : int
+

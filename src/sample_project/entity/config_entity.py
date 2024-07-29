@@ -46,3 +46,10 @@ class TrainingConfig:
     params_image_dim : int
     params_random_seed: int
     params_epochs: int
+
+@dataclass(frozen=True)
+class TestingConfig:
+    root_dir: Path
+    trained_model_path : Path
+    test_loader_dir :  Path
+    params_random_seed: int

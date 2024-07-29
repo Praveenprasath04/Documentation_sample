@@ -26,4 +26,10 @@ training:
   train_loader_dir: artifacts/data_preprocessing/train_loader.ld
   valid_loader_dir: artifacts/data_preprocessing/valid_loader.ld
 
+testing:
+  root_dir: artifacts/testing
+  trained_model_path: artifacts/training/trained_model.h5
+  test_loader_dir: artifacts/data_preprocessing/test_loader.ld
+
+
 

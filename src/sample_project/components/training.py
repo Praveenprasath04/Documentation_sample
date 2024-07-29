@@ -2,7 +2,7 @@ import os
 import urllib.request as request
 import zipfile
 from sample_project import logger
-from sample_project.utils.common import get_size
+from sample_project.utils.common import get_size, accuracy
 from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
 import numpy as np
@@ -28,6 +28,7 @@ class Training:
         self.loss_fn = nn.CrossEntropyLoss()
 
     def train(self):
+        np.random.seed(42)
         self.valid_accuracy, self.valid_loss = self.train_loop(self.model, self.train_iterator, self.valid_iterator,
                                                                self.config.params_epochs, self.config.params_learning_rate,
                                                                self.config.params_momentum, self.loss_fn)
@@ -100,7 +101,8 @@ class Training:
                         iteration * 100 / n_iterations_per_epoch,
                         current_loss),
                     end="")
-                break
+                
+               
 
             model.eval()
             loss_vals = []
@@ -118,7 +120,8 @@ class Training:
                             iteration, n_iterations_validation,
                             iteration * 100 / n_iterations_validation, current_loss, current_accuracy),
                         end=" " * 10)
-                    break
+                    
+                 
 
 
                 loss_val = np.mean(loss_vals)

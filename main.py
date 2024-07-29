@@ -3,6 +3,7 @@ from sample_project.pipeline.stage_01_data_ingestion import DataIngestionTrainin
 from sample_project.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
 from sample_project.pipeline.stage_03_data_preprocessing import DataPreprocessTrainingPipeline
 from sample_project.pipeline.stage_04_training import FinalTrainingPipeline
+from sample_project.pipeline.stage_05_testing import FinalTestingPipeline
 
 
 STAGE_NAME = "Data Ingestion stage"
@@ -51,4 +52,14 @@ except Exception as e:
     logger.exception(e)
     raise e
 
+STAGE_NAME = "Testing"
 
+try:
+    logger.info(f"*******************")
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+    obj = FinalTestingPipeline()
+    obj.main()
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+    logger.exception(e)
+    raise e

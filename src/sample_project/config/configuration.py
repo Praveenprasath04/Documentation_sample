@@ -4,6 +4,7 @@ from sample_project.entity.config_entity import DataIngestionConfig
 from sample_project.entity.config_entity import PrepareBaseModelConfig
 from sample_project.entity.config_entity import DataPreprocessConfig
 from sample_project.entity.config_entity import TrainingConfig
+from sample_project.entity.config_entity import TestingConfig
 from pathlib import Path
 
 class ConfigurationManager:
@@ -98,3 +99,20 @@ class ConfigurationManager:
         )
 
         return training_config
+    
+
+    def get_testing_config(self) -> TestingConfig:
+        testing = self.config.testing
+        params = self.params
+        create_directories([
+            Path(testing.root_dir)
+        ])
+
+        testing_config = TestingConfig(
+            root_dir=Path(testing.root_dir),
+            trained_model_path=Path(testing.trained_model_path),
+            test_loader_dir=Path(testing.test_loader_dir),
+            params_random_seed = params.RANDOM_SEED
+        )
+
+        return testing_config

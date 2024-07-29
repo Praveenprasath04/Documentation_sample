@@ -9,6 +9,8 @@ from box import ConfigBox
 from pathlib import Path
 from typing import Any
 import base64
+import torch
+import numpy as np
 
 
 
@@ -123,3 +125,10 @@ def get_size(path: Path) -> str:
     """
     size_in_kb = round(os.path.getsize(path)/1024)
     return f"~ {size_in_kb} KB"
+
+
+def accuracy(Predictions,Actual_labels) :
+
+    predicted_labels = torch.argmax(Predictions,axis=1)
+    accuracy = torch.count_nonzero(predicted_labels==Actual_labels)/ len(Actual_labels)
+    return accuracy

@@ -3,6 +3,7 @@ from sample_project.utils.common import read_yaml, create_directories
 from sample_project.entity.config_entity import DataIngestionConfig
 from sample_project.entity.config_entity import PrepareBaseModelConfig
 from sample_project.entity.config_entity import DataPreprocessConfig
+from sample_project.entity.config_entity import TrainingConfig
 from pathlib import Path
 
 class ConfigurationManager:
@@ -73,3 +74,27 @@ class ConfigurationManager:
         )
 
         return prepare_base_model_config
+    
+    def get_training_config(self) -> TrainingConfig:
+        training = self.config.training
+        params = self.params
+        create_directories([
+            Path(training.root_dir)
+        ])
+
+        training_config = TrainingConfig(
+            root_dir=Path(training.root_dir),
+            trained_model_path=Path(training.trained_model_path),
+            base_model_path=Path(training.base_model_path),
+            train_loader_dir=Path(training.train_loader_dir),
+            valid_loader_dir = Path(training.valid_loader_dir),
+            params_epochs=params.EPOCHS,
+            params_batch_size=params.BATCH_SIZE,
+            params_learning_rate = params.LEARNING_RATE,
+            params_momentum = params.MOMENTUM,
+            params_image_dim = params.IMAGE_DIM,
+            params_random_seed = params.RANDOM_SEED,
+            params_valid_size = params.VALID_SIZE
+        )
+
+        return training_config

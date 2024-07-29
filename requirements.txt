@@ -11,6 +11,7 @@ types-pyYAML
 Flask
 Flask-Cors
 torchinfo
-torch==2.2
+torch
 torchvision
+scikit-learn
 -e .
